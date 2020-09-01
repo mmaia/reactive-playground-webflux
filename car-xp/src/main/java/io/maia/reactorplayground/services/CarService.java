@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class CarService {
       .onErrorReturn(Collections.emptyList())
       .flatMap(Flux::fromIterable)
       .collectList()
+      .timeout(Duration.of(30, ChronoUnit.SECONDS))
       .block();
 
     return allCars;

@@ -1,8 +1,10 @@
 package io.maia.reactorplayground.brandservice.services;
 
+import io.maia.reactorplayground.brandservice.config.BrandServiceConfig;
 import io.maia.reactorplayground.sharedkernel.dto.Brand;
 import io.maia.reactorplayground.sharedkernel.dto.Car;
 import io.maia.reactorplayground.sharedkernel.util.CarFactory;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -14,9 +16,12 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class VolkswagenBrandService implements BrandService {
 
   private static final SecureRandom random = new SecureRandom();
+
+  private final BrandServiceConfig brandServiceConfig;
 
   @Override
   public Mono<List<Car>> search() {
@@ -24,12 +29,12 @@ public class VolkswagenBrandService implements BrandService {
     List<Car> result = new ArrayList<>();
 
     try {
-      Thread.sleep(1_000);
+      Thread.sleep(random.nextInt(brandServiceConfig.getMaxResponseTimeInMillis()));
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
 
-    for (int i = 0; i < carNames.size() * 3; i++) {
+    for (int i = 0; i < brandServiceConfig.getMaxCarsPerSearch(); i++) {
       Car car = CarFactory.fromBrandAndModel(carName(), brand());
       result.add(car);
     }

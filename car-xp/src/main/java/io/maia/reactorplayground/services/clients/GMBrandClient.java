@@ -1,5 +1,6 @@
 package io.maia.reactorplayground.services.clients;
 
+import io.maia.reactorplayground.config.BrandClientConfig;
 import io.maia.reactorplayground.sharedkernel.dto.Car;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,16 +16,17 @@ import java.util.List;
 public class GMBrandClient implements BrandClient {
 
   private final WebClient webClient;
+  private final BrandClientConfig brandClientConfig;
 
-  public GMBrandClient(WebClient.Builder webClientBuilder) {
+  public GMBrandClient(WebClient.Builder webClientBuilder, BrandClientConfig brandClientConfig) {
     this.webClient = webClientBuilder.baseUrl("http://localhost:8180").build();
+    this.brandClientConfig = brandClientConfig;
   }
-
 
   @Override
   public Mono<List<Car>> search() {
     log.info("GMBrandClient.search");
-    return this.webClient.get().uri("/gm").retrieve().bodyToFlux(Car.class).collectList().timeout(Duration.of(15, ChronoUnit.SECONDS));
+    return this.webClient.get().uri("/gm").retrieve().bodyToFlux(Car.class).collectList()
+      .timeout(Duration.of(brandClientConfig.getMaxWaitForResponseInSeconds(), ChronoUnit.SECONDS));
   }
-
 }
