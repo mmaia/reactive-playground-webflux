@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix="brand")
 public class BrandServiceConfig {
-  private int maxResponseTimeInMillis = 15_000; // time in millis
-  private int maxCarsPerSearch = 50;
+  private int maxResponseTimeInMillis; // time in millis
+  private int maxCarsPerSearch;
 }
