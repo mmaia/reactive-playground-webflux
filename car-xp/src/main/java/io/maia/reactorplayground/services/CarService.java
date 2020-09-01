@@ -1,5 +1,6 @@
 package io.maia.reactorplayground.services;
 
+import io.maia.reactorplayground.config.BrandClientConfig;
 import io.maia.reactorplayground.services.clients.BrandClient;
 import io.maia.reactorplayground.sharedkernel.dto.Car;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,8 @@ public class CarService {
 
   private final List<BrandClient> brandClients;
 
+  private final BrandClientConfig brandClientConfig;
+
   public List<Car> searchAllWithBlock() {
 
     List<Car> allCars = Flux.fromIterable(brandClients)
@@ -24,7 +27,7 @@ public class CarService {
       .onErrorReturn(Collections.emptyList())
       .flatMap(Flux::fromIterable)
       .collectList()
-      .timeout(Duration.of(30, ChronoUnit.SECONDS))
+      .timeout(Duration.of(brandClientConfig.getMaxWaitForFullProcessingInSeconds(), ChronoUnit.SECONDS))
       .block();
 
     return allCars;

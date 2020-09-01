@@ -19,7 +19,7 @@ public class VolkswagenBrandClient implements BrandClient {
   private final BrandClientConfig brandClientConfig;
 
   public VolkswagenBrandClient(WebClient.Builder webClientBuilder, BrandClientConfig brandClientConfig) {
-    this.webClient = webClientBuilder.baseUrl("http://localhost:8180").build();
+    this.webClient = webClientBuilder.baseUrl(brandClientConfig.getBrandServiceUrl()).build();
     this.brandClientConfig = brandClientConfig;
   }
 

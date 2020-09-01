@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix="brand-client")
 public class BrandClientConfig {
 
-  private int maxWaitForResponseInSeconds = 5;
+  private String brandServiceUrl;
+  private int maxWaitForResponseInSeconds;
+  private int maxWaitForFullProcessingInSeconds;
 
 }

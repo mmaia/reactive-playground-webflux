@@ -19,7 +19,7 @@ public class FiatBrandClient implements BrandClient {
   private final BrandClientConfig brandClientConfig;
 
   public FiatBrandClient(WebClient.Builder webClientBuilder, BrandClientConfig brandClientConfig) {
-    this.webClient = webClientBuilder.baseUrl("http://localhost:8180").build();
+    this.webClient = webClientBuilder.baseUrl(brandClientConfig.getBrandServiceUrl()).build();
     this.brandClientConfig = brandClientConfig;
   }
 
