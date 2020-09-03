@@ -14,7 +14,7 @@ brand:
 
   gm:
     random: false
-    max-response-time-in-millis: 0
+    max-response-time-in-millis: 4000
     max-cars-per-search: 1000
 
   fiat:
