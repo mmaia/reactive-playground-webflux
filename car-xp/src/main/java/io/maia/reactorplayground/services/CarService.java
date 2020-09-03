@@ -27,7 +27,7 @@ public class CarService {
       .onErrorReturn(Collections.emptyList())
       .flatMap(Flux::fromIterable)
       .collectList()
-      .timeout(Duration.of(brandClientConfig.getMaxWaitForFullProcessingInMillis(), ChronoUnit.SECONDS))
+      .timeout(Duration.of(brandClientConfig.getMaxWaitForFullProcessingInMillis(), ChronoUnit.MILLIS))
       .block();
 
     return allCars;
