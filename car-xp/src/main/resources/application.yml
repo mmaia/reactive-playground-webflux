@@ -6,7 +6,7 @@ logging:
 brand-client:
 
   brand-service-url: http://localhost:8180
-  max-wait-for-full-processing-in-millis: 15000
+  max-wait-for-full-processing-in-millis: 1000
 
   ford:
     random: false
