@@ -6,6 +6,7 @@ import io.maia.reactorplayground.sharedkernel.dto.Car;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -28,6 +29,10 @@ public class CarService {
       .flatMap(Flux::fromIterable)
       .collectList()
       .timeout(Duration.of(brandClientConfig.getMaxWaitForFullProcessingInMillis(), ChronoUnit.MILLIS))
+
+      // fix possible error returned to client
+      //.timeout(Duration.of(brandClientConfig.getMaxWaitForFullProcessingInMillis(), ChronoUnit.MILLIS),Mono.empty())
+
       .block();
 
     return allCars;
