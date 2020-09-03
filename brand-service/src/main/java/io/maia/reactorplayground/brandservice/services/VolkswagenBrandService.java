@@ -7,8 +7,6 @@ import io.maia.reactorplayground.sharedkernel.util.CarFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import javax.annotation.PostConstruct;
 import java.security.SecureRandom;
@@ -33,7 +31,7 @@ public class VolkswagenBrandService implements BrandService {
   }
 
   @Override
-  public Mono<List<Car>> search() {
+  public List<Car> search() {
     log.info("VolkswagenBrandService.search()");
     List<Car> result = new ArrayList<>();
 
@@ -44,7 +42,7 @@ public class VolkswagenBrandService implements BrandService {
       result.add(car);
     }
 
-    return Flux.fromIterable(result).collectList();
+    return result;
   }
 
   private void delayResponse() {

@@ -7,9 +7,9 @@ import io.maia.reactorplayground.brandservice.services.GMBrandService;
 import io.maia.reactorplayground.brandservice.services.VolkswagenBrandService;
 import io.maia.reactorplayground.sharedkernel.dto.Car;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -23,22 +23,23 @@ public class BrandApi {
   private final VolkswagenBrandService volkswagenBrandService;
 
   @GetMapping("/ford")
-  public Mono<List<Car>> findFords() {
-    return fordBrandService.search();
+  public ResponseEntity<List<Car>> findFords() {
+    List<Car> cars = fordBrandService.search();
+    return ResponseEntity.ok(cars);
   }
 
   @GetMapping("/fiat")
-  public Mono<List<Car>> findFiats() {
-    return fiatBrandService.search();
+  public ResponseEntity<List<Car>> findFiats() {
+    return ResponseEntity.ok(fiatBrandService.search());
   }
 
   @GetMapping("/gm")
-  public Mono<List<Car>> findGms() {
-    return gMBrandService.search();
+  public ResponseEntity<List<Car>> findGms() {
+    return ResponseEntity.ok(gMBrandService.search());
   }
 
   @GetMapping("/volkswagen")
-  public Mono<List<Car>> findVolks() {
-    return volkswagenBrandService.search();
+  public ResponseEntity<List<Car>> findVolks() {
+    return ResponseEntity.ok(volkswagenBrandService.search());
   }
 }
