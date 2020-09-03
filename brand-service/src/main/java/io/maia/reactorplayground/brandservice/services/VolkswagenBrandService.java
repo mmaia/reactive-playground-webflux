@@ -28,13 +28,9 @@ public class VolkswagenBrandService implements BrandService {
     log.info("VolkswagenBrandService.search()");
     List<Car> result = new ArrayList<>();
 
-    try {
-      Thread.sleep(random.nextInt(brandServiceConfig.getMaxResponseTimeInMillis()));
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    delayResponse();
 
-    for (int i = 0; i < brandServiceConfig.getMaxCarsPerSearch(); i++) {
+    for (int i = 0; i < brandServiceConfig.getVolkswagen().getMaxCarsPerSearch(); i++) {
       Car car = CarFactory.fromBrandAndModel(carName(), brand());
       result.add(car);
     }
@@ -42,6 +38,17 @@ public class VolkswagenBrandService implements BrandService {
     return Flux.fromIterable(result).collectList();
   }
 
+  private void delayResponse() {
+    int delay = brandServiceConfig.getVolkswagen().getMaxResponseTimeInMillis();
+    if(brandServiceConfig.getVolkswagen().isRandom()) {
+      delay = random.nextInt(delay);
+    }
+    try {
+      Thread.sleep(delay);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
 
   private Brand brand() {
     return Brand.VOLKSWAGEN;

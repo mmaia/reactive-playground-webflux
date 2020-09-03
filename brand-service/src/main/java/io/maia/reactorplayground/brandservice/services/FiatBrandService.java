@@ -29,20 +29,27 @@ public class FiatBrandService implements BrandService {
 
     List<Car> result = new ArrayList<>();
 
+    delayResponse();
 
-    try {
-      Thread.sleep(random.nextInt(brandServiceConfig.getMaxResponseTimeInMillis()));
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-
-    for (int i = 0; i < brandServiceConfig.getMaxCarsPerSearch() ; i++) {
+    for (int i = 0; i < brandServiceConfig.getFiat().getMaxCarsPerSearch() ; i++) {
       Car car = CarFactory.fromBrandAndModel(carName(), brand());
       result.add(car);
     }
 
     return Flux.fromIterable(result).collectList();
 
+  }
+
+  private void delayResponse() {
+    int delay = brandServiceConfig.getFiat().getMaxResponseTimeInMillis();
+    if(brandServiceConfig.getFiat().isRandom()) {
+      delay = random.nextInt(delay);
+    }
+    try {
+      Thread.sleep(delay);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   private Brand brand() {

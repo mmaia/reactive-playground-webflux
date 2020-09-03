@@ -29,18 +29,26 @@ public class FordBrandService implements BrandService {
 
     List<Car> result = new ArrayList<>();
 
-    try {
-      Thread.sleep(random.nextInt(brandServiceConfig.getMaxResponseTimeInMillis()));
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    delayResponse();
 
-    for (int i = 0; i < brandServiceConfig.getMaxCarsPerSearch(); i++) {
+    for (int i = 0; i < brandServiceConfig.getFord().getMaxCarsPerSearch(); i++) {
       Car car = CarFactory.fromBrandAndModel(carName(), brand());
       result.add(car);
     }
 
     return Flux.fromIterable(result).collectList();
+  }
+
+  private void delayResponse() {
+    int delay = brandServiceConfig.getFord().getMaxResponseTimeInMillis();
+    if(brandServiceConfig.getFord().isRandom()) {
+      delay = random.nextInt(delay);
+    }
+    try {
+      Thread.sleep(delay);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   private Brand brand() {
