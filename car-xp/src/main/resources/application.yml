@@ -10,7 +10,7 @@ brand-client:
 
   ford:
     random: false
-    max-wait-for-response-in-millis: 10000
+    max-wait-for-response-in-millis: 2000
 
   gm:
     random: false

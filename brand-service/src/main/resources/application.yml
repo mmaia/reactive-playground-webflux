@@ -9,7 +9,7 @@ logging:
 brand:
   ford:
     random: false
-    max-response-time-in-millis: 0
+    max-response-time-in-millis: 5000
     max-cars-per-search: 50
 
   gm:
