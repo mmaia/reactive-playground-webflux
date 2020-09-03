@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.PostConstruct;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,14 @@ public class FordBrandService implements BrandService {
   private static final SecureRandom random = new SecureRandom();
 
   private final BrandServiceConfig brandServiceConfig;
+
+  @PostConstruct
+  public void logProps() {
+    log.info("\nFord, \nCars per search: {}, \nRandom: {}, \nResponse(Max) time in millis: {}",
+      brandServiceConfig.getFord().getMaxCarsPerSearch(),
+      brandServiceConfig.getFord().isRandom(),
+      brandServiceConfig.getFord().getMaxResponseTimeInMillis());
+  }
 
   @Override
   public Mono<List<Car>> search() {
