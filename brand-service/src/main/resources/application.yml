@@ -1,11 +1,6 @@
 server:
   port: 8180
 
-logging:
-  level:
-    org.springframework.http.codec.json.Jackson2JsonEncoder: DEBUG
-    org.springframework.http.codec.json.Jackson2JsonDecoder: DEBUG
-
 brand:
   ford:
     random: false

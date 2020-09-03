@@ -1,7 +1,7 @@
 logging:
   level:
-    org.springframework.http.codec.json.Jackson2JsonEncoder: DEBUG
-    org.springframework.http.codec.json.Jackson2JsonDecoder: DEBUG
+    org.springframework.http.codec.json.Jackson2JsonEncoder: ERROR
+    org.springframework.http.codec.json.Jackson2JsonDecoder: ERROR
 
 brand-client:
 
