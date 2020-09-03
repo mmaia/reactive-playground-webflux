@@ -10,7 +10,35 @@ import org.springframework.context.annotation.Configuration;
 public class BrandClientConfig {
 
   private String brandServiceUrl;
-  private int maxWaitForResponseInSeconds;
-  private int maxWaitForFullProcessingInSeconds;
+  private int maxWaitForFullProcessingInMillis;
+
+  private Ford ford;
+  private GM gm;
+  private Volkswagen volkswagen;
+  private Fiat fiat;
+
+  @Data
+  public class Ford {
+    private boolean random;
+    private int maxWaitForResponseInMillis;
+  }
+
+  @Data
+  public class GM {
+    private boolean random;
+    private int maxWaitForResponseInMillis;
+  }
+
+  @Data
+  public class Volkswagen {
+    private boolean random;
+    private int maxWaitForResponseInMillis;
+  }
+
+  @Data
+  public class Fiat {
+    private boolean random;
+    private int maxWaitForResponseInMillis;
+  }
 
 }
