@@ -23,6 +23,10 @@ public class FordBrandClient implements BrandClient{
   public FordBrandClient(WebClient.Builder webClientBuilder, BrandClientConfig brandClientConfig) {
     this.webClient = webClientBuilder.baseUrl(brandClientConfig.getBrandServiceUrl()).build();
     this.brandClientConfig = brandClientConfig;
+
+    log.info("\nFord: \nRandom: {}, \nMax Wait for Response {}",
+      brandClientConfig.getFord().isRandom(),
+      brandClientConfig.getFord().getMaxWaitForResponseInMillis());
   }
 
   @Override

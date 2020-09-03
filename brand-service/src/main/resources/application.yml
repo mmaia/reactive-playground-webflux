@@ -1,0 +1,23 @@
+server:
+  port: 8180
+
+brand:
+  ford:
+    random: false
+    max-response-time-in-millis: 0
+    max-cars-per-search: 50
+
+  gm:
+    random: false
+    max-response-time-in-millis: 0
+    max-cars-per-search: 1000
+
+  fiat:
+    random: false
+    max-response-time-in-millis: 0
+    max-cars-per-search: 100
+
+  volkswagen:
+     random: false
+     max-response-time-in-millis: 0
+     max-cars-per-search: 120

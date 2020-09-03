@@ -23,6 +23,10 @@ public class VolkswagenBrandClient implements BrandClient {
   public VolkswagenBrandClient(WebClient.Builder webClientBuilder, BrandClientConfig brandClientConfig) {
     this.webClient = webClientBuilder.baseUrl(brandClientConfig.getBrandServiceUrl()).build();
     this.brandClientConfig = brandClientConfig;
+
+    log.info("\nVolkswagen: \nRandom: {}, \nMax Wait for Response {}",
+      brandClientConfig.getVolkswagen().isRandom(),
+      brandClientConfig.getVolkswagen().getMaxWaitForResponseInMillis());
   }
 
   @Override

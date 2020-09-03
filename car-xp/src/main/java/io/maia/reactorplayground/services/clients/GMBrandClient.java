@@ -23,6 +23,10 @@ public class GMBrandClient implements BrandClient {
   public GMBrandClient(WebClient.Builder webClientBuilder, BrandClientConfig brandClientConfig) {
     this.webClient = webClientBuilder.baseUrl(brandClientConfig.getBrandServiceUrl()).build();
     this.brandClientConfig = brandClientConfig;
+
+    log.info("\nGM: \nRandom: {}, \nMax Wait for Response {}",
+      brandClientConfig.getGm().isRandom(),
+      brandClientConfig.getGm().getMaxWaitForResponseInMillis());
   }
 
   @Override

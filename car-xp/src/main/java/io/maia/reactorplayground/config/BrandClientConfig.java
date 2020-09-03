@@ -18,25 +18,25 @@ public class BrandClientConfig {
   private Fiat fiat;
 
   @Data
-  public class Ford {
+  public static class Ford {
     private boolean random;
     private int maxWaitForResponseInMillis;
   }
 
   @Data
-  public class GM {
+  public static class GM {
     private boolean random;
     private int maxWaitForResponseInMillis;
   }
 
   @Data
-  public class Volkswagen {
+  public static class Volkswagen {
     private boolean random;
     private int maxWaitForResponseInMillis;
   }
 
   @Data
-  public class Fiat {
+  public static class Fiat {
     private boolean random;
     private int maxWaitForResponseInMillis;
   }

@@ -1,0 +1,20 @@
+brand-client:
+
+  brand-service-url: http://localhost:8180
+  max-wait-for-full-processing-in-millis: 15000
+
+  ford:
+    random: false
+    max-wait-for-response-in-millis: 10000
+
+  gm:
+    random: false
+    max-wait-for-response-in-millis: 10000
+
+  fiat:
+    random: false
+    max-wait-for-response-in-millis: 10000
+
+  volkswagen:
+    random: false
+    max-wait-for-response-in-millis: 10000

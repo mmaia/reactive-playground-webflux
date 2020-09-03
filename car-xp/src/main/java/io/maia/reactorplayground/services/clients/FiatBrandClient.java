@@ -24,6 +24,11 @@ public class FiatBrandClient implements BrandClient {
   public FiatBrandClient(WebClient.Builder webClientBuilder, BrandClientConfig brandClientConfig) {
     this.webClient = webClientBuilder.baseUrl(brandClientConfig.getBrandServiceUrl()).build();
     this.brandClientConfig = brandClientConfig;
+
+    log.info("Client properties settings are, \nGlobal Max Wait: {}", brandClientConfig.getMaxWaitForFullProcessingInMillis());
+    log.info("\nFiat: \nRandom: {}, \nMax Wait for Response {}",
+      brandClientConfig.getFiat().isRandom(),
+      brandClientConfig.getFiat().getMaxWaitForResponseInMillis());
   }
 
   @Override
@@ -35,7 +40,7 @@ public class FiatBrandClient implements BrandClient {
 
   private int waitTime() {
     int result = brandClientConfig.getFiat().getMaxWaitForResponseInMillis();
-    if(brandClientConfig.getFiat().isRandom()) {
+    if (brandClientConfig.getFiat().isRandom()) {
       result = random.nextInt(result);
     }
     return result;
