@@ -31,6 +31,21 @@ On the brand-service each call ends up in one endpoint (which is blocking in the
 where configuration can be done to implement a synchronous block delay and the number of entries in the response can be 
 configured as a [property](./brand-service/src/main/resources/application.yml). 
 
+## Quick run
+
+Check it out: `git clone git@github.com:mmaia/reactive-palyground-webflux.git` (feel free to fork and send Merge Requests)
+
+They're springboot applications so you can run them from your IDE or command line. 
+I have covered this in this other [post](https://dev.to/thegroo/spring-boot-crash-course-21nm). 
+
+`mvn spring-boot:run`
+
+With the applications running, navigate to localhost:8080 to call the xp endpoint which will triggered the weblflux 
+blocking calls.
+
+Multiple different versions of the configuration between these two services are available in each branch of this repo. 
+
+
 ## Tools
 
 We recommend that you use the available free tools to watch the behaviour of the different scenarios implementations closely.
