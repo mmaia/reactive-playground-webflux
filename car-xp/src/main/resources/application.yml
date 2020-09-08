@@ -1,7 +1,7 @@
 logging:
-  level:
-    org.springframework.http.codec.json.Jackson2JsonEncoder: DEBUG
-    org.springframework.http.codec.json.Jackson2JsonDecoder: DEBUG
+  level: # change to DEBUG to see encoded / decoded payloads
+    org.springframework.http.codec.json.Jackson2JsonEncoder: INFO
+    org.springframework.http.codec.json.Jackson2JsonDecoder: INFO
 
 brand-client:
 
