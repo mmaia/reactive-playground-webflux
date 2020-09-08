@@ -2,6 +2,7 @@ logging:
   level: # change to DEBUG to see encoded / decoded payloads
     org.springframework.http.codec.json.Jackson2JsonEncoder: INFO
     org.springframework.http.codec.json.Jackson2JsonDecoder: INFO
+    io.maia.reactorplayground.brandservice.services: INFO
 
 brand-client:
 

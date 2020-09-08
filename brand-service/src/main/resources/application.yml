@@ -2,9 +2,10 @@ server:
   port: 8180
 
 logging:
-  level: # change to DEBUG to see encoded / decoded payloads
+  level: # change to DEBUG to see encoded / decoded payloads and extra log/console messages
     org.springframework.http.codec.json.Jackson2JsonEncoder: INFO
     org.springframework.http.codec.json.Jackson2JsonDecoder: INFO
+    io.maia.reactorplayground.brandservice.services: INFO
 
 brand:
   ford:
@@ -15,10 +16,10 @@ brand:
   gm:
     random: false
     max-response-time-in-millis: 0
-    max-cars-per-search: 1000
+    max-cars-per-search: 75
 
   fiat:
-    random: false
+    random: true
     max-response-time-in-millis: 0
     max-cars-per-search: 100
 

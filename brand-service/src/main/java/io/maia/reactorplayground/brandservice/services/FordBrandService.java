@@ -34,7 +34,7 @@ public class FordBrandService implements BrandService {
 
   @Override
   public Mono<List<Car>> search() {
-    log.info("FordBrandService.search()");
+    log.debug("FordBrandService.search()");
 
     List<Car> result = new ArrayList<>();
 

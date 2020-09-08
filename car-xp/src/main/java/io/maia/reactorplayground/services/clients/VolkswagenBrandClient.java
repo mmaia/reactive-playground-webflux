@@ -31,9 +31,10 @@ public class VolkswagenBrandClient implements BrandClient {
 
   @Override
   public Mono<List<Car>> search() {
-    log.info("VolkswagenBrandClient.search");
+    log.debug("VolkswagenBrandClient.search");
     return this.webClient.get().uri("/volkswagen").retrieve().bodyToFlux(Car.class).collectList()
-      .timeout(Duration.of(waitTime(), ChronoUnit.MILLIS));
+      .timeout(Duration.of(waitTime(), ChronoUnit.MILLIS))
+            .doOnError((throwable) -> log.error("Timed out Volkswagen search", throwable));
   }
 
   private int waitTime() {

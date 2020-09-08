@@ -34,7 +34,7 @@ public class VolkswagenBrandService implements BrandService {
 
   @Override
   public Mono<List<Car>> search() {
-    log.info("VolkswagenBrandService.search()");
+    log.debug("VolkswagenBrandService.search()");
     List<Car> result = new ArrayList<>();
 
     delayResponse();

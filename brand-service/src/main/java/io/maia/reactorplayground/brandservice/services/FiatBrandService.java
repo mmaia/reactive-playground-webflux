@@ -34,7 +34,7 @@ public class FiatBrandService implements BrandService {
 
   @Override
   public Mono<List<Car>> search() {
-    log.info("FiatBrandService.search()");
+    log.debug("FiatBrandService.search()");
 
     List<Car> result = new ArrayList<>();
 

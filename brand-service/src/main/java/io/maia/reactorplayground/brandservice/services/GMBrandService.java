@@ -34,7 +34,7 @@ public class GMBrandService implements BrandService {
 
   @Override
   public Mono<List<Car>> search() {
-    log.info("GMBrandService.search()");
+    log.debug("GMBrandService.search()");
 
     List<Car> result = new ArrayList<>();
 

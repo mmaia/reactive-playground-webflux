@@ -31,9 +31,10 @@ public class GMBrandClient implements BrandClient {
 
   @Override
   public Mono<List<Car>> search() {
-    log.info("GMBrandClient.search");
+    log.debug("GMBrandClient.search");
     return this.webClient.get().uri("/gm").retrieve().bodyToFlux(Car.class).collectList()
-      .timeout(Duration.of(waitTime(), ChronoUnit.MILLIS));
+      .timeout(Duration.of(waitTime(), ChronoUnit.MILLIS))
+      .doOnError((throwable) -> log.error("Timed out Ford search", throwable));
   }
 
   private int waitTime() {
