@@ -49,7 +49,7 @@ public class VolkswagenBrandService implements BrandService {
 
   private void delayResponse() {
     int delay = brandServiceConfig.getVolkswagen().getMaxResponseTimeInMillis();
-    if(brandServiceConfig.getVolkswagen().isRandom()) {
+    if(brandServiceConfig.getVolkswagen().isRandom() && delay > 0) {
       delay = random.nextInt(delay);
     }
     try {

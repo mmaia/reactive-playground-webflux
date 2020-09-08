@@ -20,7 +20,7 @@ public class CarAPI {
 
   @GetMapping
   public ResponseEntity<List<Car>> search() {
-    log.info("Entering CarAPI.search");
+    log.debug("Entering CarAPI.search");
     return ResponseEntity.ok(carService.searchAllWithBlock());
   }
 }

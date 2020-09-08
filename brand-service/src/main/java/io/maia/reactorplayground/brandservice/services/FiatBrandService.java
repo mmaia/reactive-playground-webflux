@@ -51,7 +51,7 @@ public class FiatBrandService implements BrandService {
 
   private void delayResponse() {
     int delay = brandServiceConfig.getFiat().getMaxResponseTimeInMillis();
-    if(brandServiceConfig.getFiat().isRandom()) {
+    if(brandServiceConfig.getFiat().isRandom() && delay > 0) {
       delay = random.nextInt(delay);
     }
     try {

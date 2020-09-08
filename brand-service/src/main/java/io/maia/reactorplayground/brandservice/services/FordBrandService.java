@@ -50,7 +50,7 @@ public class FordBrandService implements BrandService {
 
   private void delayResponse() {
     int delay = brandServiceConfig.getFord().getMaxResponseTimeInMillis();
-    if(brandServiceConfig.getFord().isRandom()) {
+    if(brandServiceConfig.getFord().isRandom() && delay > 0) {
       delay = random.nextInt(delay);
     }
     try {

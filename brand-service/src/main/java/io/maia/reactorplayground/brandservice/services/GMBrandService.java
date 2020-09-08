@@ -50,7 +50,7 @@ public class GMBrandService implements BrandService {
 
   private void delayResponse() {
     int delay = brandServiceConfig.getGm().getMaxResponseTimeInMillis();
-    if(brandServiceConfig.getGm().isRandom()) {
+    if(brandServiceConfig.getGm().isRandom() && delay > 0) {
       delay = random.nextInt(delay);
     }
     try {
