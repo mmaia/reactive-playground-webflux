@@ -12,6 +12,8 @@ import reactor.core.publisher.Mono;
 
 import javax.annotation.PostConstruct;
 import java.security.SecureRandom;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,25 +40,21 @@ public class GMBrandService implements BrandService {
 
     List<Car> result = new ArrayList<>();
 
-    delayResponse();
-
     for (int i = 0; i < brandServiceConfig.getGm().getMaxCarsPerSearch(); i++) {
       Car car = CarFactory.fromBrandAndModel(carName(), brand());
       result.add(car);
     }
 
-    return Flux.fromIterable(result).collectList();
+    return Flux.fromIterable(result).collectList().delayElement(delayResponse());
   }
 
-  private void delayResponse() {
+  private Duration delayResponse() {
     int delay = brandServiceConfig.getGm().getMaxResponseTimeInMillis();
     if(brandServiceConfig.getGm().isRandom() && delay > 0) {
       delay = random.nextInt(delay);
-    }
-    try {
-      Thread.sleep(delay);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+      return Duration.of(delay, ChronoUnit.MILLIS);
+    } else {
+      return Duration.ZERO;
     }
   }
 
